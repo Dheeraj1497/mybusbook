@@ -1,0 +1,28 @@
+<h1>Welcome To RedBus.com</h1><br>
+<%= form_with url:dashboard_index_path, local: true, method: :get do %>
+  <div>
+   <%= label_tag "from" %>
+   <%= text_field_tag "from", nil %>
+  </div><br>
+
+  <div>
+   <%= label_tag "to" %>
+   <%= text_field_tag "to", nil %>
+  </div><br>
+
+  <!-- <div>
+    <%#= label_tag "date" %>
+    <%#= text_field_tag "date", data: { behavior: 'daterangepicker' } %>
+  </div><br> -->
+
+  <div class="field">
+    <%= label :date, "Select Date:" %>
+    <%= date_field_tag :date %>
+  </div><br>
+
+  <%= form_tag(dashboard_index_path, method: :get) do %>
+  <%= submit_tag 'Search' %> 
+  <% end %>
+  <!-- <%#= link_to "Search Bus", dashboard_index_path %> -->
+
+<% end %>

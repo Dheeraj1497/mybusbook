@@ -1,0 +1,32 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+  host: localhost
+  port: 5432
+  username: postgres
+  password: postgres
+
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: mybusbook_development
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+
+
+test:
+  <<: *default
+  database: mybusbook_test
+
+production:
+  <<: *default
+  database: mybusbook_production
+  username: postgres
+  password: <%= ENV["postgres"] %>

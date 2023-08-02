@@ -1,0 +1,29 @@
+<%= form_with model: @bus do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @bus.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :number %><br>
+    <%= form.text_field :number %>
+    <% @bus.errors.full_messages_for(:number).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :total_seats %><br>
+    <%= form.text_field :total_seats %>
+    <% @bus.errors.full_messages_for(:total_seats).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div><br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

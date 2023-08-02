@@ -1,0 +1,29 @@
+<h1>Bus Routes</h1>
+
+<ul>
+	   <table>
+	   	  <tr>
+			    <th>Id</th>
+			    <th>From</th>
+			    <th>To</th>
+			    <th>departure_time</th>
+			    <th>arrival_time</th>
+			    <th>bus_id</th>
+			    <th>available_seats</th>
+			  </tr>
+	   </table>
+  <% @bus_routes.each do |routes| %>
+		  <table>
+			  <tr>
+			    <td><%= link_to routes.id, routes %></td>
+			    <td><%= routes.from %></td>
+			    <td><%= routes.to %></td>
+			    <td><%= routes.departure_time %></td>
+			    <td><%= routes.arrival_time%></td>
+			    <td><%= routes.bus_id%></td>
+			    <td><%= routes.available_seats%></td>
+			    <td><%= link_to "Create Routes", new_bus_bus_route_path() %></td>
+			  </tr>
+		  </table>
+  <% end %>
+</ul>

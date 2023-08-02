@@ -1,0 +1,28 @@
+<h1> Sign Up </h1>
+
+ <%= form_with model: @user, url: users_path  do |form| %>
+    <div class=”mb-3″>
+      <%= form.label :name%>
+      <%= form.text_field :name%>
+    </div><br>
+
+    <div class=”mb-3″>
+      <%= form.label :mobile_no%>
+      <%= form.number_field :mobile_no%>
+    </div><br>
+
+    <div class=”mb-3″>
+      <%= form.label :email%>
+      <%= form.text_field :email%>
+    </div><br>
+  
+    <div class=”mb-3″>
+      <%= form.label :password%>
+      <%= form.password_field :password%>
+    </div><br>
+
+    <div class=”mb-3″>
+    <%= form.submit%>
+    </div>
+
+ <% end %>

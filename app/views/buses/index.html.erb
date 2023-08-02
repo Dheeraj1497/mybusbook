@@ -1,0 +1,30 @@
+<% flash.each do |type, msg| %>
+  <div style="color:green; font-size: 30px;">
+    <%= msg %>
+  </div>
+<% end %>
+<h1>Bus Details</h1>
+
+<ul>
+	   <table>
+	   	  <tr>
+			    <th>Id</th>
+			    <th>Name</th>
+			    <th>Number</th>
+			    <th>Seats</th>
+			  </tr>
+	   </table>
+  <% @buses.each do |mybus| %>
+		  <table>
+			  <tr>
+			    <td><%= link_to mybus.id, mybus %></td>
+			    <td><%= mybus.name %></td>
+			    <td><%= mybus.number %></td>
+			    <td><%= mybus.total_seats %></td>
+			    <td><%= link_to "Bus_Routes", bus_bus_routes_path(mybus) %></td>
+			  </tr>
+		  </table>
+  <% end %>
+</ul>
+
+<%= link_to "Create Buses", new_bus_path %>

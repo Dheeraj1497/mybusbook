@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from: MyString
+  to: MyString
+  departure_time: 2023-07-27 10:44:47
+  arrival_time: 2023-07-27 10:44:47
+  bus_id: one
+  available_seats: 1
+
+two:
+  from: MyString
+  to: MyString
+  departure_time: 2023-07-27 10:44:47
+  arrival_time: 2023-07-27 10:44:47
+  bus_id: two
+  available_seats: 1
