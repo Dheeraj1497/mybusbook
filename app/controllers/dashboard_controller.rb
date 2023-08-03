@@ -8,7 +8,7 @@ class DashboardController < ApplicationController
     # @buses = @bus_route.Buses
 
 		bus_routes = BusRoute.all
-  	binding.pry
+  	# binding.pry
 		bus_route = BusRoute.where(bus_params)
 		@buses = bus_route.first.buses.where(departure_time: params[:date])
 	end
@@ -18,7 +18,7 @@ class DashboardController < ApplicationController
 	end
 
 	def new
-
+    # binding.pry
 	end
 
 	def create

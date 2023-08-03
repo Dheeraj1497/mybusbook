@@ -1,29 +1,33 @@
-<h1>Bus Details</h1>
-
-<ul>
-	  <table>
-	 	  <tr>
-		    <th>Bus Name</th>
+<div class="container">
+	<h1 style="font-family:fantasy;color:darkgreen;margin-top: 10px;margin-left:400px;">Bus Details</h1>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr style="text-align:center;size:10px;">
+      	<th>Bus Id</th>
+        <th>Bus Name</th>
 		    <th>Bus Number</th>
-		    <th>Total Seats</th>
-		    <th>Available Seats</th>
+		    <!-- <th>Total Seats</th> -->
+		    <!-- <th>Available Seats</th> -->
 		    <th>Departure Time</th>
 		    <th>Arrival Time</th>
-		  </tr>
-	  </table>
-	   <!-- <#% binding.pry %> -->
-	  <% @buses.each do |mybus| %>
-			<table>
-			  <tr>
-			    <!-- <td><%#= link_to mybus.id, mybus %></td> -->
-			    <td><%= mybus.name %></td>
+		    <th style="font-family:cursive;color: darkred;">Bus Book Here</th>
+        <!-- Add more columns here for additional data fields -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @buses.each do |mybus| %>
+        <tr>
+        	<td><%= mybus.id %></td>
+          <td><%= mybus.name %></td>
 			    <td><%= mybus.number %></td>
-			    <td><%= mybus.total_seats %></td>
-			    <td><%= mybus.available_seats %></td>
+			    <!-- <td><.%= mybus.total_seats %></td> -->
+			    <!-- <td><.%= mybus.available_seats %></td> -->
 			    <td><%= mybus.departure_time %></td>
 			    <td><%= mybus.arrival_time %></td>
-			    <!-- <td><%#= link_to "Book Bus",   %></td> -->
-			  </tr>
-			</table>
-	  <% end %>
-</ul>
+			    <td><%= link_to "Book Bus", new_booking_path(bus_id: mybus.id), class: "btn btn-primary" %></td>
+          <!-- Add more cells here for additional data fields -->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

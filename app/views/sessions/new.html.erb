@@ -1,15 +1,41 @@
 
-<% if flash[:notice] %>
-  <%= content_tag :h1, flash[:notice] %>
-<% else %>
-  <%= content_tag :h1, "Please Log in" %>
-<% end %>
+<div class="container" style="margin-top: 150px;">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+       <h1 style="color: blue;">Please Login/SignUp</h1>
+      <%= form_with url: user_login_path do |f| %>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control", required: true %>
+        </div style>
+        <div style="padding-top: 8px;">
+        <%= f.submit "Log in", class: "btn btn-primary btn-block " %>
+        <%= link_to "Sign up", new_user_path, class: "btn btn-secondary btn-block " %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= form_with url: user_login_path do |f| %>
-  <%= f.label :email %><br>
-  <%= f.text_field :email %><br>
-  <%= f.label :password %><br>
-  <%= f.password_field :password %><br>
-  <%=  link_to "Sign Up", new_user_path %>
-  <%= f.submit "Log In!" %>
-<% end %>
+
+<!-- ---------------------------------------------------------------------------- -->
+<!-- <#% if flash[:notice] %>
+  <#%= content_tag :h1, flash[:notice] %>
+<#% else %>
+  <#%= content_tag :h1, "Please Log in" %>
+<#% end %>
+
+<#%= form_with url: user_login_path do |f| %>
+  <.%= f.label :email %><br>
+  <.%= f.text_field :email %><br>
+  <.%= f.label :password %><br>
+  <.%= f.password_field :password %><br>
+  <.%=  link_to "Sign Up", new_user_path %>
+  <.%= f.submit "Log In!" %>
+<.% end %> -->
+
+<!-- --------------------------------------------------------------------------- -->

@@ -16,8 +16,8 @@ class SessionsController < ApplicationController
     	redirect_to new_dashboard_path, notice: 'Logged in!'
     else
     	#error message on fail
-    	message = "Somthing went wrong!!!!  make sure your username and passsword are correct"
-    	redirect_to root_path, notice: message
+    	flash.now[:notice] = "Invalid username/ password combination."
+    	redirect_to root_path
     end
   end
 

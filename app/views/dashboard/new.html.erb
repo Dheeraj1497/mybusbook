@@ -1,28 +1,23 @@
-<h1>Welcome To RedBus.com</h1><br>
-<%= form_with url:dashboard_index_path, local: true, method: :get do %>
-  <div>
-   <%= label_tag "from" %>
-   <%= text_field_tag "from", nil %>
-  </div><br>
-
-  <div>
-   <%= label_tag "to" %>
-   <%= text_field_tag "to", nil %>
-  </div><br>
-
-  <!-- <div>
-    <%#= label_tag "date" %>
-    <%#= text_field_tag "date", data: { behavior: 'daterangepicker' } %>
-  </div><br> -->
-
-  <div class="field">
-    <%= label :date, "Select Date:" %>
-    <%= date_field_tag :date %>
-  </div><br>
-
-  <%= form_tag(dashboard_index_path, method: :get) do %>
-  <%= submit_tag 'Search' %> 
-  <% end %>
-  <!-- <%#= link_to "Search Bus", dashboard_index_path %> -->
-
-<% end %>
+<div class="container">
+  <div class="row justify-content-center" style="margin-top: 100px">
+    <div class="col-md-6">
+      <h1 style="margin-top: 10px;margin-left: 80px;color:green;">Welcome To RedBus.com</h1><br>
+      <%= form_with url:dashboard_index_path, local: true, method: :get do |f| %>
+        <div class="form-group">
+          <%= f.label :from %>
+          <%= f.text_field :from, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :to %>
+          <%= f.text_field :to, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :date %>
+          <%= f.date_field :date, class: "form-control", required: true %>
+        </div>
+        <!-- <.%= f.submit "Log in", class: "btn btn-primary btn-block" %> -->
+        <%= submit_tag 'Search', class: "btn btn-primary btn-block mt-2" %>
+      <% end %>
+    </div>
+  </div>
+</div>

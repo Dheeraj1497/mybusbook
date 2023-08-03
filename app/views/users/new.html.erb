@@ -1,28 +1,62 @@
-<h1> Sign Up </h1>
 
- <%= form_with model: @user, url: users_path  do |form| %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 p-5">
+      <h2 style="color: blueviolet;margin-left: 215px;">Sign Up</h2>
+      <%= form_with model: @user, url: users_path do |f| %>
+        <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :mobile_no %>
+          <%= f.number_field :mobile_no, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control", required: true %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "form-control", required: true %>
+        </div>
+        <div style="margin-top: 8px;">
+        <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- --------------------------------------------------------- -->
+
+<!-- <h1> Sign Up </h1>
+
+ <.%= form_with model: @user, url: users_path  do |form| %>
     <div class=”mb-3″>
-      <%= form.label :name%>
-      <%= form.text_field :name%>
+      <.%= form.label :name%>
+      <.%= form.text_field :name%>
     </div><br>
 
     <div class=”mb-3″>
-      <%= form.label :mobile_no%>
-      <%= form.number_field :mobile_no%>
+      <.%= form.label :mobile_no%>
+      <.%= form.number_field :mobile_no%>
     </div><br>
 
     <div class=”mb-3″>
-      <%= form.label :email%>
-      <%= form.text_field :email%>
+      <.%= form.label :email%>
+      <.%= form.text_field :email%>
     </div><br>
   
     <div class=”mb-3″>
-      <%= form.label :password%>
-      <%= form.password_field :password%>
+      <.%= form.label :password%>
+      <.%= form.password_field :password%>
     </div><br>
 
     <div class=”mb-3″>
-    <%= form.submit%>
+    <.%= form.submit%>
     </div>
 
- <% end %>
+ <.% end %> -->
+
+ <!-- ----------------------------------------------------------------------------------- -->
