@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
-
+  skip_before_action :logged_in_user, only: [:create, :new]  
+  
   def new
-
   end
 
 	def create
-		# binding.pry
+		binding.pry
 		@user = User.find_by(email: params[:email])
     # binding.pry
 		#authenticate user Credentials
@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     session[:user_id] = nil
     redirect_to root_url, notice: "You have been signed out!"
   end

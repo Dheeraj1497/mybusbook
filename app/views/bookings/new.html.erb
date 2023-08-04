@@ -1,16 +1,17 @@
 <div class="container">
   <h1>Bus Details</h1>
-  <!-- <.% binding.pry %> -->
+  <% binding.pry %>
   <p class="mb-3">Total Seats: <%= @bus.total_seats %></p>
   <p class="mb-3">Available Seats: <%= @bus.available_seats %></p>
   <h2>Book Seats</h2>
-  <%= form_with(model: [@bus, @booking], url: new_booking_path(@bus.id), method: :get, class: 'mb-3') do |form| %>
+  <%= form_with(model: [@bus, @booking], url: bookings_path, method: :post, class: 'mb-3') do |form| %>
+    <%= form.hidden_field :bus_id, value: @bus.id %>
     <div class="form-group">
       <%= form.label :Seats, class: 'form-label' %>
       <%= form.number_field :seat_booked, class: 'form-control' %>
     </div>
     <div style="margin-top: 10px;">
-    <%= form.submit 'Book Bus', class: 'btn btn-primary' %>
-    <% end %>
+      <%= form.submit 'Book Bus', class: 'btn btn-primary' %>
    </div>
+  <% end %>
 </div>

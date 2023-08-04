@@ -1,14 +1,10 @@
 class DashboardController < ApplicationController
-	
-	def index
-		# binding.pry
-		# @bus_routes = BusRoutes.all
-		# @from = params[:from]
-		# @to = params[:to]
-    # @buses = @bus_route.Buses
+	binding.pry
+	before_action :logged_in_user
+  include ApplicationHelper 
 
-		bus_routes = BusRoute.all
-  	# binding.pry
+	def index
+  	
 		bus_route = BusRoute.where(bus_params)
 		@buses = bus_route.first.buses.where(departure_time: params[:date])
 	end

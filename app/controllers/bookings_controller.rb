@@ -5,29 +5,36 @@ class BookingsController < ApplicationController
   end
 
   def new
+    binding.pry
+    # binding
+     # binding.pry
     @bus = Bus.find_by(id: params[:bus_id])
     @booking = Booking.new
   end
 
   def show
-    @booking = Booking.find_by_id(params[:id])
+    
+    # @booking = Booking.find_by_id(params[:id])
+    @booking = Booking.find(params[:id])
   end
 
   def create
-    @bus = Bus.find_by(id:params[:id])
-    if @bus.nil?
+    # binding.pry
+    bus = Bus.find_by(id: params[:booking][:bus_id])
+    if bus.nil?
       flash[:notice] = "Bus Not Available"
-    else
-      @seats = @bus.available_seats
-      # @price = @bus.ticket_price
-      if @seats<params[:seats].to_i
-        flash[:notice] = "Seats Not Available"
+    else 
+      seats = bus.available_seats
+      if seats < params[:booking][:seat_booked].to_i
+        flash[:alert] = "Seats Not Available"
       else
-        @booking = Bus.new(book_params)
-        # @booking.price(@price*params[:seat_booked].to_i)
-        if @booking.save
-          @bus.available_seats.update(@seats-params[:seats].to_i)
-          redirect_to @booking
+        # booking = booking.find_by_ticket_no(params[:ticket_no])
+        booking = Booking.new(book_params)
+        booking.bus_route_id = bus.bus_route.id
+        booking.user_id = current_user.id
+        if booking.save
+          bus.update(available_seats: seats - params[:booking][:seat_booked].to_i)
+          redirect_to bookings_path #Redirect to Bokkings's Show action
         else
           flash[:notice] = "Booking Failed"
         end
@@ -41,8 +48,7 @@ class BookingsController < ApplicationController
 
   private
   def book_params
-    params.require(:booking).permit(:seat_booked,:status,:user_id,:bus_id,:alphanumeric_id)
-  end
-
+    params.require(:booking).permit(:seat_booked,:status,:user_id)
+  end 
 end
   

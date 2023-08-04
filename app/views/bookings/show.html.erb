@@ -1,1 +1,42 @@
-<h1>Hello Show</h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="container">
+  <h2><h1 class="text-success text-center text-uppercase"><dt>Congratulations!!!!!!</dt></h1></h2>
+  <h2><h1 class="text-warning text-center">You Have Successfully Booked Your Ticket</h1></h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Booking Id</th>
+        <th>Customer Name</th>
+        <th>Contact Number</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Bus Name</th>
+        <th>Bus Number</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Ticket Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% binding.pry %>
+      <% @booking.each do |mybus| %>
+        <tr>
+          <td><%= mybus.id %></td>
+          <td><%= mybus.name %></td>
+          <td><%= mybus.number %></td>
+          <!-- <td><.%= mybus.total_seats %></td> -->
+          <!-- <td><.%= mybus.available_seats %></td> -->
+          <td><%= mybus.departure_time %></td>
+          <td><%= mybus.arrival_time %></td>
+          <td><%= link_to "Book Bus", new_booking_path(bus_id: mybus.id), class: "btn btn-primary" %></td>
+          <!-- Add more cells here for additional data fields -->
+        </tr>
+      <% end %>  
+    </tbody>
+  </table>
+</div>
+
+</body>
+
