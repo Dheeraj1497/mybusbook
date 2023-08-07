@@ -1,14 +1,17 @@
 class BookingsController < ApplicationController
 
   def index
-    # @bookings = Booking.all
-    @bookings = Booking.includes(:customer, bus_route: :buses).all
+    binding.pry
+    # @bookings = Booking.includes(:customer, bus_route: :buses).all
+    if current_user.type == 'Admin'
+     @bookings = Booking.all
+     end
+    if current_user.type == 'Customer'
+     @bookings = Booking.where(user_id: current_user.id)
+    end
   end
 
   def new
-    binding.pry
-    # binding
-     # binding.pry
     @bus = Bus.find_by(id: params[:bus_id])
     @booking = Booking.new
   end
@@ -20,7 +23,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    # binding.pry
     bus = Bus.find_by(id: params[:booking][:bus_id])
     if bus.nil?
       flash[:notice] = "Bus Not Available"
@@ -49,7 +51,7 @@ class BookingsController < ApplicationController
 
   private
   def book_params
-    params.require(:booking).permit(:seat_booked,:status,:user_id)
+    params.require(:booking).permit(:seat_booked,:status,:user_id,:bus_id)
   end 
 end
   

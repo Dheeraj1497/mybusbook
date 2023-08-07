@@ -1,13 +1,11 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="container">
   <h2><h1 class="text-success text-center text-uppercase"><dt>Congratulations!!!!!!</dt></h1></h2>
   <h2><h1 class="text-warning text-center">You Can See Your Booking Information as Below</h1></h2>
-  <table class="table">
+  <table class="table table-hover">
     <thead>
        <tr>
         <th>Booking Id</th>
+        <th>Bus Name</th>
         <th>User Name</th>
         <th>From</th>
         <th>To</th>
@@ -18,22 +16,27 @@
       </tr>
     </thead>
     <tbody>
-      <% binding.pry %>
       <% @bookings.each do |mybus| %>
         <tr>
           <td><%= mybus.id %></td>
-          <th><%= mybus.customer.name %></th>
-          <th><%= mybus.bus_route.from %></th>
-          <th><%= mybus.bus_route.to %></th>
-          <th><%= mybus.bus_route.buses.first.departure_time %></th>
-          <th><%= mybus.bus_route.buses.first.arrival_time %></th>   
-          <th><%= mybus.ticket_no %></th>
-          <th><%= mybus.status %></th>
+          <td><%= mybus.bus.name %></td>
+          <td><%= mybus.customer.name %></td>
+          <td><%= mybus.bus_route.from %></td>
+          <td><%= mybus.bus_route.to %></td>
+          <td><%= mybus.bus_route.buses.last.departure_time %></td>
+          <td><%= mybus.bus_route.buses.last.arrival_time %></td>   
+          <!-- <.% if current_user.type == 'Admin'%> --> 
+            <td><%= mybus.ticket_no %></td>
+          <!-- <.% end %> -->
+          <td><%= mybus.status %></td>
+
           <!-- Add more cells here for additional data fields -->
         </tr>
       <% end %> 
     </tbody>
   </table>
 </div>
-
 </body>
+<!-- <.% end %> -->
+
+
