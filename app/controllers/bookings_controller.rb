@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
 
   def index
-    @bookings = Booking.all
+    # @bookings = Booking.all
+    @bookings = Booking.includes(:customer, bus_route: :buses).all
   end
 
   def new
