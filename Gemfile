@@ -11,6 +11,8 @@ gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
+gem "letter_opener", :group => :development
+
 
 #bootStrap using
 # gem 'bootstrap-sass', '~> 3.4.1'

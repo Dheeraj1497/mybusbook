@@ -5,18 +5,28 @@
       <%= form_with url:dashboard_index_path, local: true, method: :get do |f| %>
         <div class="form-group">
           <%= f.label :from %>
-          <%= f.text_field :from, class: "form-control", required: true %>
+          <%= f.collection_select :from_id, City.order(:name),:id,:name, {}, {class: 'form-select'} %>
+          <%#= f.text_field :from, class: "form-control", required: true %>
         </div>
         <div class="form-group">
           <%= f.label :to %>
-          <%= f.text_field :to, class: "form-control", required: true %>
+          <%= f.collection_select :to_id, City.order(:name),:id,:name, {}, {class: 'form-select'} %>
+          <%#= f.text_field :to, class: "form-control", required: true %> 
         </div>
         <div class="form-group">
           <%= f.label :date %>
           <%= f.date_field :date, class: "form-control", required: true %>
         </div>
         <!-- <.%= f.submit "Log in", class: "btn btn-primary btn-block" %> -->
-        <%= submit_tag 'Search', class: "btn btn-primary btn-block mt-2" %>
+        <% if current_user.type == 'Customer' %>
+          <%= submit_tag 'Search', class: "btn btn-primary btn-block mt-2" %>
+          <%= link_to "Show Bookings", bookings_path, 
+             class: "btn btn-success"%>
+        <% end %>
+       <% if current_user.type == 'Admin' %>
+          <%= submit_tag 'Show Buses', class: "btn btn-outline-primary" %>
+          <%= submit_tag 'Create Bus Routes',  formaction:new_bus_route_path,class: "btn btn-outline-warning" %>
+       <% end %>
       <% end %>
     </div>
   </div>

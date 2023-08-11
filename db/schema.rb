@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_04_094452) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_09_053803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,17 +22,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_094452) do
     t.datetime "updated_at", null: false
     t.string "status"
     t.string "ticket_no"
+    t.integer "bus_id"
+    t.integer "pickup_point_id"
+    t.integer "drop_point_id"
     t.index ["bus_route_id"], name: "index_bookings_on_bus_route_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "bus_routes", force: :cascade do |t|
-    t.string "from"
-    t.string "to"
     t.integer "available_seats"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
+    t.integer "from_id"
+    t.integer "to_id"
   end
 
   create_table "buses", force: :cascade do |t|
@@ -46,6 +49,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_04_094452) do
     t.date "departure_time"
     t.date "arrival_time"
     t.index ["bus_route_id"], name: "index_buses_on_bus_route_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "point"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "city_id"
   end
 
   create_table "users", force: :cascade do |t|

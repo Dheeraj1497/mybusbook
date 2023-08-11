@@ -1,15 +1,32 @@
 <div class="container">
-  <h1>Bus Details</h1>
+  <h1>Fill The Details</h1>
   <% binding.pry %>
   <p class="mb-3">Total Seats: <%= @bus.total_seats %></p>
   <p class="mb-3">Available Seats: <%= @bus.available_seats %></p>
-  <h2>Book Seats</h2>
+  <h3>Book Seats</h3>
   <%= form_with(model: [@bus, @booking], url: bookings_path, method: :post, class: 'mb-3') do |form| %>
+  
     <%= form.hidden_field :bus_id, value: @bus.id %>
+    <%= form.hidden_field :from_id, value: @city1 %>
+    <%= form.hidden_field :to_id, value: @city2 %>
     <div class="form-group">
       <%= form.label :Seats, class: 'form-label' %>
       <%= form.number_field :seat_booked, class: 'form-control' %>
     </div>
+    <h3>From Boarding Point</h3>
+    <div class="form-group">
+          <%= form.label :from_point, class: 'form-label' %>
+          <%= form.collection_select :pickup_point_id, City.find(@city1).locations,:id,:point, {}, 
+          {class: 'form-select'} %>
+          <%#= f.text_field :from, class: "form-control", required: true %>
+    </div>
+    <h2>To Drop Point</h2>
+    <div class="form-group">
+          <%= form.label :to_point, class: 'form-label' %>
+          <%= form.collection_select :drop_point_id, City.find(@city2).locations,:id,:point, {}, 
+          {class: 'form-select'} %>
+          <%#= f.text_field :from, class: "form-control", required: true %>
+        </div>
     <div style="margin-top: 10px;">
       <%= form.submit 'Book Bus', class: 'btn btn-primary' %>
    </div>

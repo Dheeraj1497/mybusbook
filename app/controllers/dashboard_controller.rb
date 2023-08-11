@@ -1,10 +1,9 @@
 class DashboardController < ApplicationController
-	binding.pry
 	before_action :logged_in_user
   include ApplicationHelper 
 
 	def index
-  	
+		# binding.pry
 		bus_route = BusRoute.where(bus_params)
 		@buses = bus_route.first.buses.where(departure_time: params[:date])
 	end
@@ -27,7 +26,7 @@ class DashboardController < ApplicationController
 	# end
 	private
   def bus_params
-    params.permit(:from, :to)
+    params.permit(:from_id, :to_id)
   end
 
 end

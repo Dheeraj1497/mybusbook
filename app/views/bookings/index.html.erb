@@ -1,42 +1,59 @@
-<div class="container">
-  <h2><h1 class="text-success text-center text-uppercase"><dt>Congratulations!!!!!!</dt></h1></h2>
-  <h2><h1 class="text-warning text-center">You Can See Your Booking Information as Below</h1></h2>
-  <table class="table table-hover">
-    <thead>
-       <tr>
-        <th>Booking Id</th>
-        <th>Bus Name</th>
-        <th>User Name</th>
-        <th>From</th>
-        <th>To</th>
-        <th>Departure Time</th>
-        <th>Arrival Time</th>
-        <th>Ticket No</th>
-        <th>Booking Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @bookings.each do |mybus| %>
-        <tr>
-          <td><%= mybus.id %></td>
-          <td><%= mybus.bus.name %></td>
-          <td><%= mybus.customer.name %></td>
-          <td><%= mybus.bus_route.from %></td>
-          <td><%= mybus.bus_route.to %></td>
-          <td><%= mybus.bus_route.buses.last.departure_time %></td>
-          <td><%= mybus.bus_route.buses.last.arrival_time %></td>   
-          <!-- <.% if current_user.type == 'Admin'%> --> 
-            <td><%= mybus.ticket_no %></td>
-          <!-- <.% end %> -->
-          <td><%= mybus.status %></td>
-
-          <!-- Add more cells here for additional data fields -->
+  <div class="container">
+    <% if current_user.type == 'Customer' %>
+    <h2><h1 class="text-success text-center text-uppercase"><dt>Congratulations!!!!!!</dt></h1></h2>
+    <h2><h1 class="text-warning text-center">You Can See Your Booking Information as Below</h1></h2>
+    <%end%>
+    <% if current_user.type == 'Admin' %>
+    <h2><h1 class="text-warning text-center">You Can See All Cutomers Booking Information as Below</h1></h2>
+    <%end%>
+    <table class="table table-hover">
+      <thead>
+         <tr>
+          <th>Booking Id</th>
+          <th>Bus Name</th>
+          <th>User Name</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Boarding Point</th>
+          <th>Drop Point</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+          <th>Ticket No</th>
+          <th>Booking Status</th>
+          
+        <% if current_user.type == 'Admin' %>
+          <th style="color: red;">Action Buttons</th>
+        <%end%>
         </tr>
-      <% end %> 
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        <% @bookings.each do |a| %>
+        <%binding.pry%>
+          <tr>
+            <td><%= a.id %></td>
+            <td><%= a.bus.name %></td>
+            <td><%= a.customer.name %></td>
+            <td><%= a.bus_route.from_city.name %></td>
+            <td><%= a.bus_route.to_city.name %></td>
+            <td><%= a.pickup_point.point %></td>
+            <td><%= a.drop_point.point %></td>           
+            <td><%= a.bus.departure_time %></td>
+            <td><%= a.bus.arrival_time %></td>   
+            <td><%= a.ticket_no %></td>
+            <td><%= a.status %></td>
+        <% if current_user.type == 'Admin' %>
+            <td><%= link_to "Confirm", confirm_path(id: a.id), 
+             class: "btn btn-success"%>
+           <%= link_to "Cancel", cancel_path(id: a.id), 
+             class: "btn btn-danger"%>
+            </td>
+        <%end%>
+            <!-- Add more cells here for additional data fields -->
+        </tr>
+        <% end %> 
+      </tbody>
+    </table>
+ </div>
 </body>
-<!-- <.% end %> -->
 
 

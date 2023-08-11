@@ -1,5 +1,5 @@
 <div class="container">
-	<h1 style="font-family:fantasy;color:darkgreen;margin-top: 10px;margin-left:400px;">Bus Details</h1>
+	<h1 style="font-family:fantasy;color:darkgreen;margin-top: 10px;margin-left:450px;">Bus Details</h1>
   <table class="table table-bordered table-striped">
     <thead>
       <tr style="text-align:center;size:10px;">
@@ -15,7 +15,9 @@
       </tr>
     </thead>
     <tbody>
+    	
       <% @buses.each do |mybus| %>
+       <%binding.pry%>
         <tr>
         	<td><%= mybus.id %></td>
           <td><%= mybus.name %></td>
@@ -24,7 +26,15 @@
 			    <!-- <td><.%= mybus.available_seats %></td> -->
 			    <td><%= mybus.departure_time %></td>
 			    <td><%= mybus.arrival_time %></td>
-			    <td><%= link_to "Book Bus", new_booking_path(bus_id: mybus.id), class: "btn btn-primary" %></td>
+        <%if current_user.type == 'Customer' %> 
+          <%binding.pry%>
+			    <td><%= link_to "Book Bus", new_booking_path(bus_id: mybus.id,from_id:mybus.bus_route.from_id,to_id:mybus.bus_route.to_id), class: "btn btn-primary"%>
+			    </td>
+			  <%end%>
+			  <%if current_user.type == 'Admin' %>
+			    <td><%= link_to "See All Bookings", bookings_path(id: mybus.id,from_id:mybus.bus_route.from_id,to_id:mybus.bus_route.to_id), class: "btn btn-primary"%>
+			    </td>
+			  <%end%>
           <!-- Add more cells here for additional data fields -->
         </tr>
       <% end %>
