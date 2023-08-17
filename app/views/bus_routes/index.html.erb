@@ -1,29 +1,28 @@
-<h1>Bus Routes</h1>
-
-<ul>
-	   <table>
-	   	  <tr>
-			    <th>Id</th>
-			    <th>From</th>
-			    <th>To</th>
-			    <th>departure_time</th>
-			    <th>arrival_time</th>
-			    <th>bus_id</th>
-			    <th>available_seats</th>
-			  </tr>
-	   </table>
-  <% @bus_routes.each do |routes| %>
-		  <table>
-			  <tr>
-			    <td><%= link_to routes.id, routes %></td>
-			    <td><%= routes.from %></td>
-			    <td><%= routes.to %></td>
-			    <td><%= routes.departure_time %></td>
-			    <td><%= routes.arrival_time%></td>
-			    <td><%= routes.bus_id%></td>
-			    <td><%= routes.available_seats%></td>
-			    <td><%= link_to "Create Buses", new_bus_bus_route_path() %></td>
-			  </tr>
-		  </table>
-  <% end %>
-</ul>
+<div class="container mt-3">
+  <h2 >Bus Routes</h2>            
+  <table class="table table-striped table-bordered table-hover table-info">
+    <thead class="text-center">
+      <tr>
+        <th>ID</th>
+        <th>FROM CITY</th>
+        <th>TO CITY</th>
+        <th style="color: red;">Action Buttons</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @bus_routes.each do |a| %>
+      <tr class="text-center">
+        <td><%= a.id %></td>
+        <td><%= a.from_city.name %></td>
+        <td><%= a.to_city.name %></td>     
+        <td><%= link_to "Show Buses", new_bus_route_path, :class => "btn btn-primary" %>
+         <%= link_to "Update Route", new_bus_route_path, :class => "btn btn-success" %>
+         <%= link_to "Delete Route", new_bus_route_path, :class => "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+    </tbody> 
+  </table>
+  <div class="btn btn-primary">
+    <%= link_to "Create Routes", new_bus_route_path, :class => "btn btn-primary" %>
+  </div>
+</div>

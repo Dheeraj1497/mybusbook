@@ -2,18 +2,20 @@
 <div class="card">
   <div class="card-body">
 
-    <div class="mb-3">
-      <%= f.label :From, { class: "form-label"} %>
-      <%= f.text_field :name, { class: "form-control", placeholder: "Enter From Destination" } %>
-    </div>
+    <!-- <div class="mb-3">
+      <.%= f.label :From, { class: "form-label"} %>
+      <.%= f.text_field :name, { class: "form-control", placeholder: "Enter From Destination" } %>
+    </div> -->
 
-    <div class="mb-3">
-      <%= f.label :To, { class: "form-label"} %>
-      <%= f.text_field :code, { class: "form-control", placeholder: "Enter To Destination" } %>
-    </div>
+    <!-- <div class="mb-3">
+      <#%= f.label :To, { class: "form-label"} %>
+      <#%= f.text_field :code, { class: "form-control", placeholder: "Enter To Destination" } %>
+    </div> -->
     <div>
-     <%= f.submit "Create Route", class: "btn btn-outline-success" %>
-     <%= f.submit "Show Routes", class: "btn btn-outline-warning" %>
+     <!-- <#%= f.submit "Create Route", class: "" %> -->
+    <%= link_to "Create Bus Routes", class: "btn btn-outline-success"%>
+    <%= link_to "Show Bus Routes", class: "btn btn-outline-success"%>
+     <!-- <#%= f.submit "Show Routes", class: "btn btn-outline-warning" %> -->
     </div>
   </div>
 </div>

@@ -42,7 +42,9 @@ class BookingsController < ApplicationController
         booking = Booking.new(book_params)
         booking.bus_route_id = bus.bus_route.id
         booking.user_id = current_user.id
+        @customer_data = Booking.last.customer
         if booking.save
+          AdminMailer.new_booking_email(@customer_data).deliver_now
           bus.update(available_seats: seats - params[:booking][:seat_booked].to_i)
           redirect_to (bookings_path) #Redirect to Bokkings's Index action
         else
@@ -53,17 +55,17 @@ class BookingsController < ApplicationController
   end
 
   def confirm
-      binding.pry
-      booking = Booking.find(params[:id])
-      booking.update(status: 'confirmed')
-      redirect_to bookings_path
+    binding.pry
+    booking = Booking.find(params[:id])
+    booking.update(status: 'confirmed')
+    redirect_to bookings_path
   end
 
   def cancel
-      binding.pry
-      booking = Booking.find(params[:id])
-      booking.update(status: 'cancelled')
-      redirect_to bookings_path
+    binding.pry
+    booking = Booking.find(params[:id])
+    booking.update(status: 'cancelled')
+    redirect_to bookings_path
   end
 
   def destroy
@@ -72,7 +74,7 @@ class BookingsController < ApplicationController
 
   private
   def book_params
-    params.require(:booking).permit(:id,:seat_booked,:status,:user_id,:bus_id,:bus_route_id,:pickup_point_id,:drop_point_id)
+    params.require(:booking).permit(:id,:seat_booked,:status,:user_id,:bus_id,:bus_route_id,:pickup_point_id,:drop_point_id,:date)
   end 
 end
   

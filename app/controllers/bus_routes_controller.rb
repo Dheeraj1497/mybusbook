@@ -52,7 +52,7 @@ class BusRoutesController < ApplicationController
   end
 
   def post_params
-    params.require(:bus_route).permit(:from, :to)
+    params.require(:bus_route).permit(:from_id, :to_id)
   end
   
 end
